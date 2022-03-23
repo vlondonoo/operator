@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { CitizenService } from '../citizen.service';
 import { Subscription } from 'rxjs';
@@ -10,7 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./create-citizen.component.css']
 })
 export class CreateCitizenComponent implements OnInit,OnDestroy {
-  valores: Subscription = new Subscription();
+  validate: Subscription = new Subscription();
   profileForm = this.fb.group({
     id: ['', Validators.required],
     name: ['', Validators.required],
@@ -21,20 +22,21 @@ export class CreateCitizenComponent implements OnInit,OnDestroy {
 
   });
   
-  constructor(private fb: FormBuilder, private citizenService: CitizenService) { }
+  constructor(private fb: FormBuilder, private citizenService: CitizenService,  private router: Router) { }
 
   ngOnInit(): void {
   }
   submit(){
-    console.log('resposne++++',this.profileForm.value)
+    
      let response = this.profileForm.value
      this.citizenService.createCitizen(response).subscribe((response: any) => {console.log('response',response)})
-
-  
-    
   } 
+  home(){
+    this.router.navigate(['/'])
+  }
+
   ngOnDestroy(){
-    this.valores.unsubscribe()
+    this.validate.unsubscribe()
       }
 
 }

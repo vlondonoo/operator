@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateCitizenComponent } from './create-citizen/create-citizen.component';
 import { ValidateCitizenComponent } from './validate-citizen/validate-citizen.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateCitizenComponent,
-    ValidateCitizenComponent
+    ValidateCitizenComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
