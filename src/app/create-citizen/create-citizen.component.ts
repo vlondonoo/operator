@@ -23,13 +23,14 @@ export class CreateCitizenComponent implements OnInit,OnDestroy {
   });
   
   constructor(private fb: FormBuilder, private citizenService: CitizenService,  private router: Router) { }
-
+  response:string | undefined;
   ngOnInit(): void {
   }
   submit(){
     
      let response = this.profileForm.value
-     this.citizenService.createCitizen(response).subscribe((response: any) => {console.log('response',response)})
+     this.citizenService.createCitizen(response).subscribe((res: any) => {console.log('response',res)
+     this.response = res.data})
   } 
   home(){
     this.router.navigate(['/'])
